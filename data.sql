@@ -40,9 +40,49 @@ BEGIN;
 SAVEPOINT dob_animals;
 DELETE FROM animals WHERE date_of_birth > '2022-01-01';
 UPDATE animals
-SET weight_kg = weight_kg * -1
-ROLLBACK TO dob_animals
+SET weight_kg = weight_kg * -1;
+ROLLBACK TO dob_animals;
 UPDATE animals
 SET weight_kg = weight_kg * -1
 WHERE weight_kg < 0;
 COMMIT;
+
+/* Owners Data */
+
+INSERT INTO owners (full_name, age) VALUES ('Sam Smith', 34);
+INSERT INTO owners (full_name, age) VALUES ('Jennifer Orlando', 19);
+INSERT INTO owners (full_name, age) VALUES ('Bob', 45);
+INSERT INTO owners (full_name, age) VALUES ('Melody Pond', 77);
+INSERT INTO owners (full_name, age) VALUES ('Dean Winchester', 14);
+INSERT INTO owners (full_name, age) VALUES ('Jodie Whittaker', 38);
+
+/* Species Data */
+
+INSERT INTO species (name) VALUES ('Pokemon');
+INSERT INTO species (name) VALUES ('Digimon');
+
+/* Animals Update */
+
+UPDATE animals
+SET species_id = (SELECT id FROM species WHERE name = 'Digimon')
+WHERE name LIKE '%mon%';
+
+UPDATE animals
+SET species_id = (SELECT id FROM species WHERE name = 'Pokemon')
+WHERE name NOT LIKE '%mon%';
+
+UPDATE animals
+SET owners_id = (SELECT id FROM owners WHERE full_name = 'Sam Smith')
+WHERE name LIKE 'Agumon';
+UPDATE animals
+SET owners_id = (SELECT id FROM owners WHERE full_name = 'Jennifer Orlando')
+WHERE name IN ('Gabumon', 'Pikachu');
+UPDATE animals
+SET owners_id = (SELECT id FROM owners WHERE full_name = 'Bob')
+WHERE name IN ('Devimon', 'Plantmon');
+UPDATE animals
+SET owners_id = (SELECT id FROM owners WHERE full_name = 'Melody Pond')
+WHERE name IN ('Charmander', 'Squirtle', 'Blossom');
+UPDATE animals
+SET owners_id = (SELECT id FROM owners WHERE full_name = 'Dean Winchester')
+WHERE name IN ('Angemon', 'Boarmon');
