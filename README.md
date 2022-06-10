@@ -1,6 +1,7 @@
 # Hello World PostgreSQL
 
-This is a Hello World kind of project to learn database and table creation at PostgreSQL
+This is a Hello World kind of project to learn database and table creation at PostgreSQL based in the diagram below:
+![Diagram](/drawSQL-export-2022-05-10_20_09.png)
 
 ## Getting Started
 
