@@ -1,6 +1,7 @@
 # Hello World PostgreSQL
 
-This is a Hello World kind of project to learn database and table creation at PostgreSQL based in the diagram below:
+This project uses a relational database and PostgreSQL. The database contains a data file with animals' information, the schema needed to create the table and related queries based on the diagram below:
+
 ![Diagram](/drawSQL-export-2022-05-10_20_09.png)
 
 ## Getting Started
